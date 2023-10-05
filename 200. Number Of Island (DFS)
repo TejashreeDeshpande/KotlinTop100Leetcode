@@ -1,0 +1,44 @@
+// 200. Number of Islands
+// Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+// An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+import java.util.*
+fun main(args: Array<String>) {
+	val grid = arrayOf(
+	    charArrayOf('1', '1', '0', '0', '0'),
+    	charArrayOf('1', '1', '0', '0', '0'),
+	    charArrayOf('0', '0', '1', '0', '0'),
+	    charArrayOf('0', '0', '0', '1', '1')
+    )
+    val result = numIslands(grid)
+    println("Number of islands = $result") // Output: 3
+}
+fun numIslands(grid: Array<CharArray>): Int {
+    if (grid.isEmpty() || grid[0].isEmpty()) {
+        return 0
+    }
+    var numIslands = 0
+    val rows = grid.size
+    val cols = grid[0].size
+    
+    for (i in 0 until rows) {
+        for (j in 0 until cols) {
+        	if (grid[i][j] == '1') {
+                numIslands += 1
+                dfs(grid, i, j)
+            }
+        }
+    }
+    return numIslands
+}
+private fun dfs(grid: Array<CharArray>, row: Int, column: Int) {
+    if (row < 0 || column < 0 || row >= grid.size || column >= grid[0].size || grid[row][column] != '1') {
+        return
+    }
+    grid[row][column] = '0'
+    
+    dfs(grid, row - 1, column)
+	dfs(grid, row + 1, column)
+    dfs(grid, row, column + 1)
+    dfs(grid, row, column - 1)                
+}
