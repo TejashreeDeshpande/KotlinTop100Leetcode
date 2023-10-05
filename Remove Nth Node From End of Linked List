@@ -18,11 +18,11 @@ fun main(args: Array<String>) {
     var returnNode = removeNthNodeFromLinkedList(n1, 3)
     println("\nAfter removing k'th node from last : ${returnNode.toString()}")
 }
-fun removeNthNodeFromLinkedList(head: ListNode, k: Int) : ListNode {
+fun removeNthNodeFromLinkedList(head: ListNode, n: Int) : ListNode {
     var slow = head
     var fast = head
    
-	for (i in 0 until k) {
+	for (i in 0 until n) {
         fast = fast.next!!
     }
     while (fast.next != null) {
