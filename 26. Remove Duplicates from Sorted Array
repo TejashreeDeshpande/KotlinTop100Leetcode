@@ -1,0 +1,20 @@
+// Remove all duplicates from in a sorted array and 
+// returns number of unique elements
+fun main(args: Array<String>) {
+    val numbers = arrayOf(1, 1, 2, 2, 2, 3, 3)
+	  println(removeAllDuplicatesFromSortedList(numbers))
+}
+
+fun removeAllDuplicatesFromSortedList(numbers: Array<Int>) : Int {
+    if (numbers.size == 0)
+        return 0
+    
+    var i = 0
+    for (j in 1..numbers.size-1) {
+        if (numbers[j] != numbers[i]) {
+            i += 1
+            numbers[i] = numbers[j]
+        }
+    }
+    return i+1
+}
