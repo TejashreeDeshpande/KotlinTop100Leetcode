@@ -1,0 +1,46 @@
+// Delete Nth node from the end of the given linked list
+// Given a linked list and an integer N, the task is to delete the Nth node from the end of the given linked list.
+import java.util.*
+fun main(args: Array<String>) {
+	var n1 = ListNode(1)
+    val n2 = ListNode(2)
+    val n3 = ListNode(3)
+    val n4 = ListNode(4)
+    val n5 = ListNode(5)
+    val n6 = ListNode(6)
+    n1.next = n2
+    n2.next = n3
+    n3.next = n4
+    n4.next = n5
+    n5.next = n6
+  
+    println("Original list : ${n1.toString()}")
+    var returnNode = removeNthNodeFromLinkedList(n1, 3)
+    println("\nAfter removing k'th node from last : ${returnNode.toString()}")
+}
+fun removeNthNodeFromLinkedList(head: ListNode, k: Int) : ListNode {
+    var slow = head
+    var fast = head
+   
+	for (i in 0 until k) {
+        fast = fast.next!!
+    }
+    while (fast.next != null) {
+        slow = slow.next!!
+        fast = fast.next!!
+    }
+    slow.next = slow.next!!.next!!
+    return head
+}
+data class ListNode(val value: Int) {
+    var next: ListNode? = null
+    
+    override fun toString(): String {
+
+        return if (next != null) {
+            "$value -> ${next.toString()}"
+        } else {
+            "$value"
+        }
+    }
+}
