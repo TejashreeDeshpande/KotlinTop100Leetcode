@@ -1,0 +1,27 @@
+14. Longest Common Prefix
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+------------------------------------------------------------------------------------
+fun main(args: Array<String>) {
+	println(longestCommonPrefix(arrayOf("Club", "Clove", "Clap")))
+}
+// Steps :
+// 1. Sort strings Array
+// 2. compare first & last element (string) of an array
+fun longestCommonPrefix(arr : Array<String>) : String {
+    var prefix = ""
+
+    arr.sort()
+
+    val first = arr.first()
+    val last = arr.last()
+
+    for (i in 0..first.length) {
+        if (first[i] != last[i]) {
+            break;
+        }
+        prefix += first[i]
+    }
+
+    return prefix
+}
