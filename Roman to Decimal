@@ -1,0 +1,91 @@
+// Roman numerals are based on the following symbols.  
+
+// SYMBOL       VALUE
+//   I            1
+//   IV           4
+//   V            5
+//   IX           9
+//   X            10
+//   XL           40
+//   L            50
+//   XC           90
+//   C            100
+//   CD           400
+//   D            500
+//   CM           900 
+//   M            1000
+
+fun main(args: Array<String>) {
+	val str = "MCMIV"
+  println(romanToDecimal(str))
+}
+// Time complexity – O(N)
+// Auxiliary Space – O(1)
+fun romanToDecimal(s: String) : Int
+{
+    // declare two variables first
+    // will calculate the number
+    // and second will help
+    // in iterating through the
+    // string character-wise
+    var ans = 0
+    var i = 0
+    while (i < s.length - 1) {
+        when {
+            s[i] == 'I' && s[i + 1] == 'V' -> {
+                ans += 4
+                i += 1
+            }
+        
+            s[i] == 'I' && s[i + 1] == 'X' -> {
+                ans += 9
+                i += 1
+            }
+        
+            s[i] == 'X' && s[i + 1] == 'L' -> {
+                ans += 40
+                i += 1
+            }
+            s[i] == 'X' && s[i + 1] == 'C' -> {
+                ans += 90
+                i += 1
+            }
+            s[i] == 'C' && s[i + 1] == 'D' -> {
+                ans += 400
+                i += 1
+            }
+            s[i] == 'C' && s[i + 1] == 'M' -> {
+                ans += 900
+                i += 1
+            }
+        // till this we checked all the category like
+        // 4,9,40,90 etc.
+            s[i] == 'I' -> ans += 1
+            s[i] == 'V' -> ans += 5
+            s[i] == 'X' -> ans += 10
+            s[i] == 'L' -> ans += 50
+            s[i] == 'C' -> ans += 100
+            s[i] == 'D' -> ans += 500
+            s[i] == 'M' -> ans += 1000
+        }
+        i += 1
+    }
+    // for last character that
+    // left in the string if last
+    // two char comes not in
+    // the category of 4,9,40,90 etc
+    // as loop is iterating till size-1*/
+    if (s.length > i) {
+        when (s[i]) {
+        'I' -> ans += 1
+        'V' -> ans += 5
+        'X' -> ans += 10
+        'L' -> ans += 50
+        'C' -> ans += 100
+        'D' -> ans += 500
+        'M' -> ans += 1000
+        }
+    }
+ 
+    return ans
+}
