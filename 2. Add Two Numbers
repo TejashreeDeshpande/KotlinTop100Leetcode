@@ -1,0 +1,82 @@
+// 2. Add Two Numbers
+
+// You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+// You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+// Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+// Output: 7 -> 0 -> 8
+// Explanation: 342 + 465 = 807
+
+fun main(args: Array<String>) {
+	val n1 = ListNode(9)
+    val n2 = ListNode(9)
+    val n3 = ListNode(9)
+    val n4 = ListNode(9)
+    val n5 = ListNode(9)
+    val n6 = ListNode(9)
+    val n7 = ListNode(9)
+
+    n1.next = n2
+    n2.next = n3
+    n3.next = n4
+    n4.next = n5
+    n5.next = n6
+    n6.next = n7
+
+    val m1 = ListNode(9)
+    val m2 = ListNode(9)
+    val m3 = ListNode(9)
+    val m4 = ListNode(9)
+    m1.next = m2
+    m2.next = m3
+    m3.next = m4
+
+    println("List1 = ${n1.toString()}")
+    println("List2 = ${m1.toString()}")
+    
+    val returnNode = addTwoNumbers(n1, m1)
+    println("Addtion of 2 lists = ${returnNode.toString()}")
+}
+
+fun addTwoNumbers(list1: ListNode?, list2: ListNode?): ListNode? {
+    var l1 = list1
+    var l2 = list2
+    var head : ListNode? = null
+    var temp: ListNode? = null
+
+    var carry = 0
+
+    while (l1 != null || l2 != null) {
+        var sum = carry
+        if (l1 != null) {
+            sum += l1.value
+            l1 = l1.next
+        }
+        if (l2 != null) {
+            sum += l2.value
+            l2 = l2.next
+        }
+        var node = ListNode(sum % 10)
+        carry = sum / 10
+
+        if (temp == null) {
+            head = node
+            temp = head
+        } else {
+            temp.next = node
+            temp = temp.next
+        }
+    }
+    if (carry > 0) {
+        temp!!.next = ListNode(carry)
+    }
+    return head
+}
+data class ListNode(var value: Int, var next: ListNode? = null) {
+    override fun toString() : String {
+        return if (next != null) {
+            "$value -> ${next.toString()}"
+        } else {
+            "$value"
+        }
+    }
+}
