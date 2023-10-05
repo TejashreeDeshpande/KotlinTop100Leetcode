@@ -1,0 +1,18 @@
+fun towSum(numbers: Array<Int>, target: Int) : IntArray {
+
+    var map = HashMap<Int, Int>()
+    val output = IntArray(2) { -1 }
+    
+    // save indices
+    for (i in 0..numbers.size-1) {
+        map[numbers[i]] = i
+    }
+    for (i in numbers.indices) {
+        val index = map.get(target - numbers[i]) ?: -1
+        if (index > i) {
+            output[0] = i
+            output[1] = index
+        }
+    }
+    return output
+}
