@@ -1,0 +1,22 @@
+
+fun main(args: Array<String>) {
+    val output = isValidParentheses("{()}")
+	  println(output)
+}
+fun isValidParentheses(s : String) : Boolean {
+    val stack = Stack<Char>()
+    // Provide mapping of open and close brackets.
+    val map = mapOf(
+        '}' to '{',
+        ')' to '(',
+        ']' to '['
+    )
+    s.forEach { c ->
+        when {
+            stack.empty() -> stack.push(c)
+            stack.peek() == map[c] -> stack.pop()
+            else -> stack.push(c)
+        }
+    }
+    return stack.empty()
+}
