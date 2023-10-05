@@ -1,0 +1,13 @@
+fun main(args: Array<String>) {
+	val input : Int = 12345
+    println(reverseInteger(input))
+}
+fun reverseInteger(n : Int) : Int {
+        var output = 0
+        var number : Int = n
+        while (number > 0) {
+            output = output * 10 + number % 10
+            number = number / 10
+        }
+        return output
+}
