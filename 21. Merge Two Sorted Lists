@@ -6,7 +6,7 @@
 // Output: [1,1,2,3,4,4]
 
 fun main(args: Array<String>) {
-	var l1 = ListNode(1)
+    var l1 = ListNode(1)
     var l2 = ListNode(2)
     var l3 = ListNode(4)
     l1.next = l2
@@ -57,8 +57,7 @@ fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
     var next: ListNode? = null
     
     override fun toString(): String {
-
-        return if (next != null) {
+	return if (next != null) {
             "$value -> ${next.toString()}"
         } else {
             "$value"
