@@ -5,11 +5,8 @@
 import java.util.*
 fun main(args: Array<String>) {
 	val grid = arrayOf(
-	    charArrayOf('1', '1', '0', '0', '0'),
-    	charArrayOf('1', '1', '0', '0', '0'),
-	    charArrayOf('0', '0', '1', '0', '0'),
-	    charArrayOf('0', '0', '0', '1', '1')
-    )
+	    charArrayOf('1', '1', '0', '0', '0'), charArrayOf('1', '1', '0', '0', '0'),
+	    charArrayOf('0', '0', '1', '0', '0'), charArrayOf('0', '0', '0', '1', '1'))
     val result = numIslands(grid)
     println("Number of islands = $result") // Output: 3
 }
