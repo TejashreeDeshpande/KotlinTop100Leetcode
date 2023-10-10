@@ -17,7 +17,7 @@
 
 fun main(args: Array<String>) {
 	val str = "MCMIV"
-  println(romanToDecimal(str))
+  	println(romanToDecimal(str))
 }
 // Time complexity – O(N)
 // Auxiliary Space – O(1)
