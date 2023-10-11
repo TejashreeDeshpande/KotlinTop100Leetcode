@@ -1,0 +1,68 @@
+// Sum Of all nodes in a Binary Treee
+data class TreeNode(var value: Int, var left: TreeNode? = null, var right: TreeNode? = null)
+
+fun main(args: Array<String>) {
+	  var head = TreeNode(2)
+    val n1 = TreeNode(7)
+    val n2 = TreeNode(5)
+    
+    val n3 = TreeNode(2)
+    val n4 = TreeNode(6)
+    val n5 = TreeNode(5)
+    val n6 = TreeNode(11)
+	  val n7 = TreeNode(9)
+    val n8 = TreeNode(4)
+    
+    head.left = n1
+    head.right = n2
+    
+    n1.left = n3
+    n1.right = n4
+    
+    n4.left = n5
+    n4.right = n6
+    
+    n2.right = n7
+    n7.left = n8
+    
+    print("inOrder ")
+	  inOrder(head)
+    println("\n")
+    print("preOrder ")
+    preOrder(head)
+    println("\n")
+    print("postOrder ")
+    postOrder(head)
+    
+    println("\n")
+    println(sumOfAllNodes(head))
+}
+fun inOrder(head: TreeNode?) {
+    if (head == null)
+    	return
+    inOrder(head.left)
+    print("${head.value} ")
+    inOrder(head.right)
+}
+
+fun postOrder(head: TreeNode?) {
+    if (head == null)
+    	return
+    postOrder(head.left)
+    postOrder(head.right)
+    print("${head.value} ")
+}
+
+fun preOrder(head: TreeNode?) {
+    if (head == null)
+    	return
+    print("${head.value} ")
+    preOrder(head.left)
+    preOrder(head.right)
+}
+
+fun sumOfAllNodes(node: TreeNode?) : Int {
+    if (node == null) 
+    	return 0
+	  return node.value + sumOfAllNodes(node.left) + sumOfAllNodes(node.right)
+}
