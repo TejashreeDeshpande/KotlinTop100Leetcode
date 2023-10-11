@@ -1,4 +1,4 @@
-// inOrder, preOrder, postOrder Traversal of Binary Tree
+// Binary Tree Traversal - inOrder, preOrder, postOrder
 fun main(args: Array<String>) {
 	var head = TreeNode(2)
     val n1 = TreeNode(7)
