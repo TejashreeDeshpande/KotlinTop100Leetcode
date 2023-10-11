@@ -1,6 +1,6 @@
 // Binary Tree Traversal - inOrder, preOrder, postOrder
 fun main(args: Array<String>) {
-	var head = TreeNode(2)
+    val head = TreeNode(2)
     val n1 = TreeNode(7)
     val n2 = TreeNode(5)
     
@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
     val n4 = TreeNode(6)
     val n5 = TreeNode(5)
     val n6 = TreeNode(11)
-	val n7 = TreeNode(9)
+    val n7 = TreeNode(9)
     val n8 = TreeNode(4)
     
     head.left = n1
@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
     n7.left = n8
     
     print("inOrder ")
-	inOrder(head)
+    inOrder(head)
     println("\n")
     print("preOrder ")
     preOrder(head)
