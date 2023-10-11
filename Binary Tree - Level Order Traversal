@@ -1,1 +1,54 @@
 // Binary Tree - Level Order Traversal
+import java.util.*
+data class TreeNode(var value: Int, var left: TreeNode? = null, var right: TreeNode? = null)
+fun main(args: Array<String>) {
+	var head = TreeNode(2)
+    val n1 = TreeNode(7)
+    val n2 = TreeNode(5)
+    
+    val n3 = TreeNode(2)
+    val n4 = TreeNode(6)
+    val n5 = TreeNode(5)
+    val n6 = TreeNode(11)
+	val n7 = TreeNode(9)
+    val n8 = TreeNode(4)
+    
+    head.left = n1
+    head.right = n2
+    
+    n1.left = n3
+    n1.right = n4
+    
+    n4.left = n5
+    n4.right = n6
+    
+    n2.right = n7
+    n7.left = n8
+
+    levelOrderTraversal(head)
+}
+
+fun levelOrderTraversal(node: TreeNode?) {
+    if (node == null)
+    	return
+    val q: Queue<TreeNode> = LinkedList<TreeNode>()
+    q.add(node)
+    while (true) {
+        var count = q.size
+        if (count == 0)
+        	break
+        while (count > 0) {
+	        val top = q.remove()
+    	    print("${top.value} ")
+        
+        	if (top.left != null)
+        		q.add(top.left)
+                
+	        if (top.right != null)
+    	    	q.add(top.right)
+                
+            count -= 1
+        }
+        println(" ")
+    }
+}
