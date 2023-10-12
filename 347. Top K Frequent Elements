@@ -1,0 +1,41 @@
+// Top k Frequent Elements from an Array
+fun main(args: Array<String>) {
+    //val numbers = arrayOf(3, 1, 4, 4, 5, 2, 6, 1)
+    //val numbers = arrayOf(1, 1, 1, 2, 2, 100)
+    val numbers = arrayOf(1, 1, 1, 1, 2, 2, 3, 3, 4)
+    val k = 2
+    println("Input array = ${numbers.joinToString(" ")}")
+    println("Top $k Frequent Elements = ${topKFrequentElements(numbers, k).joinToString(" ")}")
+}
+fun topKFrequentElements(numbers: Array<Int>, k: Int) : List<Int> {
+    var output = mutableListOf<Int>()
+    var freqMap = HashMap<Int, Int>()
+    val bucket = arrayOfNulls<MutableList<Int>>(numbers.size-1) as Array<MutableList<Int>>
+    
+    for (i in 0..numbers.size-1) {
+        freqMap[numbers[i]] = (freqMap.get(numbers[i]) ?: 0) + 1
+    }
+    for (key in freqMap.keys) {
+        var freq = freqMap.get(key) ?: -1
+        //print("$key : $freq | ")
+        if (bucket[freq] == null){
+          bucket[freq] = mutableListOf<Int>()  
+        } 
+	    bucket[freq].add(key)
+        
+        // println("freq = $freq, ${bucket[freq].joinToString("")}")
+    }
+    println("  ")
+    var counter = 0
+    for (i in bucket.size-1 downTo 0) {
+        if (bucket[i] != null) {
+            // println("freq = $i, ${bucket[i].joinToString("")}")
+            output += bucket[i]      
+            counter += 1
+        }
+        // println("${output.joinToString(" ")}")
+        if (counter >= k)
+        	break
+    }
+    return output
+}
