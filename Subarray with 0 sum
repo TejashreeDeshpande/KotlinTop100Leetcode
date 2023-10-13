@@ -1,0 +1,22 @@
+// Subarray with 0 sum
+// Time - O(n)
+// Space - O(n)
+fun main(args: Array<String>) {
+    val numbers = arrayOf(1, 4, -2, -2, 5, -4, 3)
+    // val numbers = arrayOf(-3, 2, 3, 1, 6)
+	print("${subArrayExists(numbers)}")
+}
+fun subArrayExists(numbers: Array<Int>): Boolean {
+    var sumSet = HashSet<Int>()
+	var sum = 0
+    for (i in 0..numbers.size-1) {
+        sum += numbers[i]
+
+        if (sum == 0 || numbers[i] == 0 || sumSet.contains(sum)) {
+            return true
+        }
+        sumSet.add(sum)
+    }
+    return false
+
+}
