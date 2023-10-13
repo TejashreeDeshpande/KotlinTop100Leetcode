@@ -1,0 +1,24 @@
+// 300. Longest Increasing Subsequence
+// Longest increasing subarray length
+// Given an integer array nums, return the length of the longest strictly increasing subsequence.
+fun main(args: Array<String>) {
+	//val numbers = arrayOf(1, 9, 3, 4, 7, 2, 6, 8)
+    val numbers = arrayOf(10,9,2,5,3,7,101,18)
+    //val numbers = arrayOf(0,1,0,3,2,3)
+    //val numbers = arrayOf(7,7,7,7,7,7,7)
+    println("${longestIncreasingSubArray(numbers)}")
+}
+
+fun longestIncreasingSubArray(numbers: Array<Int>) : Int {
+    var length = 0
+    var maxLength = 0
+    for (i in 1..numbers.size-1) {
+        if (numbers[i] > numbers[i-1]) {
+            length += 1
+        } else {
+            length = 1
+        }
+        maxLength = Math.max(length, maxLength)
+    }
+    return maxLength
+}
