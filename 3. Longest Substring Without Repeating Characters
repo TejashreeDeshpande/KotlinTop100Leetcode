@@ -1,0 +1,33 @@
+// 3. Longest Substring Without Repeating Characters, Calculate length
+// Given a string s, find the length of the longest substring without repeating characters.
+fun main(args: Array<String>) {
+    val str = "abccbcbb"
+    println("${longestSubStringUniqueCharacters(str)}")
+
+}
+
+fun longestSubStringUniqueCharacters(str: String): Int {
+    if (str.length == 0)
+        return 0
+    if (str.length == 1)
+        return 1
+
+    var visited = Array<Boolean>(256) { false }
+    var left = 0
+    var right = 0
+    var maxLength = 0
+
+    while (right < str.length) {
+        if (visited[str[right].code]) {
+            while (visited[str[right].code]) {
+                visited[str[left].code] = false
+                left += 1
+            }
+        }
+        visited[str[right].code] = true
+        maxLength = Math.max(maxLength, right - left + 1)
+        right += 1
+    }
+    return maxLength
+
+}
