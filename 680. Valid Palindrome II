@@ -1,0 +1,42 @@
+// 680. Valid Palindrome II
+// Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+// Example 1:
+// Input: s = "aba"
+// Output: true
+// Example 2:
+// Input: s = "abca"
+// Output: true
+// Explanation: You could delete the character 'c'.
+
+// Time: O(n)
+// Space: O(1)
+fun main(args: Array<String>) {
+    val str = "rotatxor"	
+    println("${validPalindrome(str)}")
+}
+fun validPalindrome(s: String): Boolean {
+    var left = 0
+    var right = s.length-1
+    while (left < right) {
+        if (s[left] == s[right]) {
+            left += 1
+            right -= 1
+        } else {
+            return isPalindrome(s, left+1, right) || isPalindrome(s, left, right-1)
+        }
+    }
+    return true
+}
+fun isPalindrome(s: String, l: Int, r: Int) : Boolean {
+    var left = l
+    var right = r
+    while (left < right) {
+        if (s[left] == s[right]) {
+            left += 1
+            right -= 1
+        } else {
+            return false
+        }
+    }
+    return true
+}
