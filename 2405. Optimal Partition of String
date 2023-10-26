@@ -1,0 +1,40 @@
+// 2405. Optimal Partition of String
+// Given a string s, partition the string into one or more substrings such that the characters in each substring are unique. That is, no letter appears in a single substring more than once.
+// Return the minimum number of substrings in such a partition.
+// Note that each character should belong to exactly one substring in a partition.
+
+fun main(args: Array<String>) {
+    val str = "ssssss"
+    // val str = "cuieokbs"
+    // val str = "abacaba"
+	println("${partitionString(str)}")
+}
+
+fun partitionString(s: String) : Int {
+    val charArray = s.toCharArray()
+    
+    if (charArray.toHashSet().size == 1) {
+        return s.length
+    } else {
+        var set = mutableSetOf<Char>()
+        var count1 = 1
+	    for (c in charArray) {
+	        if (set.contains(c)) {
+    	        count1 += 1
+                set = mutableSetOf<Char>()
+            }
+            set.add(c)
+	    }
+    
+    	set.removeAll(charArray.toList())
+        var count2 = 1
+	    for (i in charArray.size-1 downTo 0) {
+    	    if (set.contains(charArray[i])) {
+    	        count2 += 1
+                set = mutableSetOf<Char>()
+            }
+            set.add(charArray[i])
+	    }
+	    return Math.min(count1, count2)
+	}
+}
