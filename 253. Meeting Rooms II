@@ -1,0 +1,35 @@
+// 253. Meeting Rooms II
+// Given an array of meeting time intervals intervals where intervals[i] = [starti, endi], return the minimum number of conference rooms required.
+fun main(args: Array<String>) {
+	/*val intervals = arrayOf( 
+        intArrayOf(0, 30),
+        intArrayOf(5, 10),
+        intArrayOf(15, 20),
+    }*/
+    val intervals = arrayOf(
+        intArrayOf(7, 10),
+        intArrayOf(2, 4),
+    )
+	println("${minMeetingRooms(intervals)}")
+}
+
+fun minMeetingRooms(intervals : Array<IntArray>) : Int {
+    var count = 0
+  	var startTimeArray = intervals.map { it[0] }.sorted()
+    var endTimeArray = intervals.map { it[1] }.sorted()
+
+    var start = 0
+    var end = 0
+    var result = 0
+    while (start < intervals.size) {
+        if (startTimeArray[start] < endTimeArray[end]) {
+            start += 1
+            count += 1
+        } else {
+            end += 1
+            count -= 1
+        }
+        result = Math.max(result, count)
+    }
+    return result
+}
