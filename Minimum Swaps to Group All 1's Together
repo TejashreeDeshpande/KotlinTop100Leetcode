@@ -1,0 +1,26 @@
+// 1151. Minimum Swaps to Group All 1's Together
+// Given a binary array data, return the minimum number of swaps required to group all 1’s present in the array together in any place in the array.
+fun main(args: Array<String>) {
+	// var numbers = intArrayOf(1,0,1,0,1)
+    var numbers = intArrayOf(1,0,1,0,1,0,0,1,1,0,1)
+    println("${minSwaps(numbers)}")
+}
+
+fun minSwaps(data: IntArray) : Int {
+    var totalOnes = 0
+    for (i in 0..data.size-1) {
+        totalOnes += data[i]
+    }
+    var currOnesInWindow = 0
+    var maxOnes = 0
+    for (i in 0..data.size-1) {
+        currOnesInWindow += data[i]
+        
+        if (i >= totalOnes) {
+            currOnesInWindow -= data[i - totalOnes]
+        }
+        maxOnes = Math.max(currOnesInWindow, maxOnes)
+        
+    }
+    return totalOnes - maxOnes
+}
