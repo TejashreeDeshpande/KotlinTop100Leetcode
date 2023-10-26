@@ -1,0 +1,55 @@
+// 767. Reorganize String
+// Given a string s, rearrange the characters of s so that any two adjacent characters are not the same.
+// Return any possible rearrangement of s or return "" if not possible.
+fun main(args: Array<String>) {
+    // val s = "aab"
+    // val s = "aaab"
+    val s = "bfrbs"
+	println("${reorganizeString(s)}")
+}
+
+fun reorganizeString(str: String) : String {
+
+    val frequency = Array<Int>(26) {0}
+    // Step 1: Find frequency of each alphabet
+    for (c in str) {
+        frequency[c.code - 'a'.code] += 1
+    }
+    // Step 2: Find alphabet with max frequency
+    var max = 0
+    var letter = 0
+    
+    for (i in 0 until frequency.size) {
+        if (frequency[i] > max) {
+            max = frequency[i]
+            letter = i
+        }
+    }
+    // Step 3: 
+    if (max > (str.length + 1) / 2) return ""
+    var output = CharArray(str.length) 
+    
+    // Step 4: Fill all even places with majority character
+    var index = 0
+    while (frequency[letter] > 0) {
+        output[index] = (letter + 'a'.code).toChar()
+        frequency[letter] -= 1
+        index += 2
+    }
+    // Step 5 : fill remaining characters
+    for (i in 0 until frequency.size) {
+        
+        if (i == letter) {
+          continue
+        }
+        while (frequency[i] > 0) {
+            if (index > str.length-1) {
+                index = 1
+            }
+            output[index] = (i + 'a'.code).toChar()
+            frequency[i] -= 1
+            index += 2
+        }
+    }
+    return String(output)
+}
