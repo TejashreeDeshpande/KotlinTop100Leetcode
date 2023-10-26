@@ -1,0 +1,23 @@
+// Largest index difference of decreasing elements
+fun main(args: Array<String>) {
+	var numbers = intArrayOf(21, 13, 18, 10, 7, 3, 1)
+    // var numbers = intArrayOf(7,1,5,4)
+    println("${largestIndexDiff(numbers)}")
+}
+fun largestIndexDiff(numbers: IntArray) : Int {
+
+    var maxDiff = 0
+    var currDiff = 0
+    var start = 0
+    for (i in 1..numbers.size-1) {
+        if (numbers[i] < numbers[i-1]) {
+            currDiff = i - start
+        } else {
+            start = i
+        }
+        //println("currDiff = $currDiff")
+        //println("start = $start")
+        maxDiff = Math.max(currDiff, maxDiff)
+    }
+    return maxDiff
+}
