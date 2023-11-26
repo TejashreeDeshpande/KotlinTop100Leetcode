@@ -19,31 +19,30 @@ fun decodeString(s: String) : String {
     
     val stack = Stack<Char>()
     
-	  for (ch in s) {
+    for (ch in s) {
         if (ch == ']') { 
             var tempStr = ""
-	        while (!stack.empty() && stack.peek() != '[') {
+	    while (!stack.empty() && stack.peek() != '[') {
                 tempStr = stack.peek() + tempStr
-	            stack.pop()
+	        stack.pop()
             }
             // remove the '[' from the stack
             stack.pop()
-	        var num: String = ""
+	    var num: String = ""
             // remove the digits from the stack
-	        while (!stack.empty() && stack.peek().isDigit()) {
+	    while (!stack.empty() && stack.peek().isDigit()) {
                 num = stack.peek() + num
-        	    stack.pop()
+        	stack.pop()
             }
             val number = num.toInt()
            
-	        var repeatStr: String = ""
-	        for (j in 0..number-1)
+	    var repeatStr: String = ""
+	    for (j in 0..number-1)
             	repeatStr += tempStr
-	        for (c in repeatStr)
+	    for (c in repeatStr)
             	stack.push(c)
         } else {
             stack.push(ch)
-            
         } 
     }
     var res: String = ""
