@@ -51,7 +51,33 @@ fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
         }
         return result.next
     }
+
+fun mergedList(n1: Node, m1: Node): Node? {
+    var n = n1
+    var m = m1
+    var returnNode = Node(Int.MIN_VALUE)
+    var current = returnNode
     
+    while (n.next != null && m.next != null) {
+        if (n.d < m.d) {
+			current.next = n
+            n = n.next ?: break
+        } else {
+            current.next = m
+            m = m.next ?: break
+        }
+        current = current.next!!
+    }
+
+    if (n.next != null) {
+        current.next = n
+    }
+    if (m.next != null) {
+        current.next = m
+    }
+    return returnNode.next
+}
+
  // Definition for singly-linked list.
  data class ListNode(val value: Int) {
     var next: ListNode? = null
