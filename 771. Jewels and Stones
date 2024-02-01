@@ -1,0 +1,24 @@
+//You're given strings jewels representing the types of stones that are jewels, and stones representing the stones you have. Each character in stones is a type of stone you have. You want to know how many of the stones you have are also jewels.
+
+//Letters are case sensitive, so "a" is considered a different type of stone from "A".
+fun main() {
+    val jewels = "aA"
+    val stones = "aAAbbbb"
+
+    // val jewels = "z"
+    // val stones = "ZZ"
+    
+	println(numberOfJewels(jewels, stones))
+}
+
+fun numberOfJewels(jewels: String, stones: String): Int {
+	var count = 0 
+    val s = hashSetOf<Char>()
+    for (c in jewels) {
+        s.add(c)
+    }
+    for (c in stones) {
+        if (s.contains(c)) count += 1
+    }
+    return count
+}
