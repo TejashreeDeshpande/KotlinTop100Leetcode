@@ -1,0 +1,38 @@
+// 205. Isomorphic Strings
+//Given two strings s and t, determine if they are isomorphic.
+
+//Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+
+//All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+fun main() {    
+
+    //val s = "egg"
+    //val t = "add"
+    
+    val s = "badc"
+    val t = "kikp"
+    
+	println(isomorphicStrings(s, t))
+}
+
+fun isomorphicStrings(s: String, t: String): Boolean {
+    val map = hashMapOf<Char, Char>()
+    for (i in 0 until s.length) {
+        val original = s[i]
+        val replacement = t[i]
+        
+        if (!map.containsKey(original)) {
+            if (!map.values.contains(replacement)) {
+                map[original] = replacement
+            } else {
+                return false
+            }
+        } else {
+            val mapValue = map[original]
+            if (mapValue != replacement) {
+                return false
+            }
+        }
+    }
+    return true
+}
